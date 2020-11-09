@@ -63,7 +63,7 @@ replaced images in real-time along with super resolution for video
 conference applications using GANs. We will collect data from Youtube-8M
 dataset and use some Zoom call recordings amongst the group. The project
 will involve experimenting on different GAN architectures and loss
-functions for two tasks: Background Replacement and Super Resolution.
+functions for Super Resolution and LSTM for Background Replacement.
 It would also entail a way to transmit the encoded latent vector between
 two applications to reconstruct the image with improved quality in
 real-time. A successful outcome would be to produce a 4-5 minute video
@@ -93,7 +93,7 @@ Computer Vision and Pattern Recognition (CVPR).
 
 \paragraph{Architecture Investigation Plan:}
 
-Needs to be filled in.
+We plan to use LSTM's for Background Replacement, Autoencoder for Video Compression and SRGAN for Image Super Resolution. Then, we will explore various neural network architectures, hyperparameters to improve the accuracy of our models.    
 
 \paragraph{Estimated Compute Needs:}
 
@@ -104,13 +104,10 @@ Needs to be filled in.
 The following is the rough breakdown of roles and responsibilities
 we plan for our team:
 
-Pick out of (Background Replacement GAN, Video Compression Pipeline,
-Auto-annotation model for dataset and building training and deployment
-code) 
 \begin{itemize}
-\item Adityan: Super Resolution GAN. 
-\item Srujana: 
-\item Aditi: 
+\item Adityan: Super Resolution GAN 
+\item Srujana: Background Replacement LSTM
+\item Aditi: Video Compression Pipeline, Auto-annotation model
 \end{itemize}
 All team members will work on the final presentation, slides, and
 report.
