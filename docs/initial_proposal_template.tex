@@ -86,18 +86,18 @@ We propose to build on the approach used in
 \begin{itemize}
 \item Olof Mogren, ``\href{https://arxiv.org/pdf/1609.04802.pdf}{Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network},''
 Computer Vision and Pattern Recognition (CVPR).
-\item Blog Post: 
-\item GitHub codebases: \href{https://github.com/olofmogren/c-rnn-gan/}{Convolutional-LSTM Code},
+\item Architecture: \href{https://arxiv.org/pdf/1505.04597.pdf}{U-Net paper},
+\item GitHub codebases: \href{https://github.com/eti-p-doray/unet-gan-matting}{Background Removal},
 \href{https://github.com/HasnainRaz/Fast-SRGAN}{Fast-SRGAN Code}
 \end{itemize}
 
 \paragraph{Architecture Investigation Plan:}
 
-We plan to use LSTM's for Background Replacement, Autoencoder for Video Compression and SRGAN for Image Super Resolution. Then, we will explore various neural network architectures, hyperparameters to improve the accuracy of our models.    
+We plan to use U-Net with GANs for Background Replacement and SRGAN for Image Super Resolution. Then, we will explore various neural network architectures, hyperparameters to improve the accuracy of our models.    
 
 \paragraph{Estimated Compute Needs:}
 
-Needs to be filled in. 
+Based on the data set size in the above paper and the benchmarks in this original U-Net paper, we estimate that one training run for our initial U-Net GAN architecture will take 20 hours on a single nVidia V100 GPU, which is the GPU resource in the AWS p3.2xlarge instance. With spot pricing, which is roughly $1 per hour, we expect $20 per training run. For the SRGAN architecture we estimate that one training run will take 15 hours; so we estimation $15 per run. We expect to do a number of provisional runs to tune hyper-parameters. We estimate that this will cost approximate $40. In addition, we expect to do approximately 4 full runs which brings our total estimated computing cost to roughly $250. Pooling our resources, we expect to be about $100 short of this value. 
 
 \paragraph{Team Roles:}
 
@@ -106,8 +106,8 @@ we plan for our team:
 
 \begin{itemize}
 \item Adityan: Super Resolution GAN 
-\item Srujana: Background Replacement LSTM
-\item Aditi: Video Compression Pipeline, Auto-annotation model
+\item Srujana: Background Replacement U-Net,Auto-annotation model(Data collection and cleaning)
+\item Aditi:   Background Replacement GAN, Auto-annotation model(Data collection and cleaning)
 \end{itemize}
 All team members will work on the final presentation, slides, and
 report.
