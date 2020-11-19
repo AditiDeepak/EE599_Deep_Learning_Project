@@ -3,7 +3,7 @@ import torch
 from PIL import Image
 
 class SRDataset(nn.Dataset):
-    def __init__(self, dataset_path, hr_size, scale_factor=4):
+    def __init__(self, dataset_path, hr_size, scale_factor=2):
         self.hr_size = hr_size
         self.dataset_path = dataset_path
         self.frames = os.listdir(dataset_path)
