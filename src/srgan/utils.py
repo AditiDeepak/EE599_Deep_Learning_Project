@@ -1,20 +1,20 @@
 Config={}
 
 Config['debug']=True
-Config['use_cuda']=False
-Config['train_set_path']='/home/adityan/EE599_Deep_Learning_Project/src/data/youtube_vid_dataset'
+Config['use_cuda']=True
+Config['train_set_path']='/home/ubuntu/DIV2K/'
 # Config['test_set_path']='/home/adityan/EE599_Deep_Learning_Project/src/data/images'
-Config['checkpoint_path']='/home/adityan/EE599_Deep_Learning_Project/src/data/checkpoints/srgan'
+Config['checkpoint_path']='/home/ubuntu/srgan_new/'
 
 Config['scale']=2
 Config['n_colors']=3
 Config['n_resblocks']=6
 Config['n_feats']=64
-Config['epochs']=300
+Config['epochs']=100
 
-Config['batch_size']=2
-Config['num_workers']=2
-Config['img_size']=(480,640)
+Config['batch_size']=8
+Config['num_workers']=4
+Config['img_size']=(240,320) #(480,640)
 
 Config['generator_lr']=1e-4
 Config['discriminator_lr']=1e-4
@@ -26,6 +26,8 @@ Config['generator_checkpoint']=None
 Config['discriminator_checkpoint']=None
 
 import torch
+import numpy as np
+import cv2
 
 class PSNR:
     def __init__(self):
@@ -44,7 +46,7 @@ class SSIM:
     def __call__(img1, img2):
         ssims=[]
         for i in range(3):
-            ssims.append(ssim(img1[i], img2[i]))
+            ssims.append(SSIM()._ssim(img1[i].cpu().detach().numpy(), img2[i].cpu().detach().numpy()))
         return np.array(ssims).mean()
 
     @staticmethod
