@@ -41,8 +41,6 @@ class UpsampleBlock(nn.Module):
 class Generator(nn.Module):
     def __init__(self, args=Config):
         super(Generator, self).__init__()
-        self.lr = (args['img_size'][0]//2,args['img_size'][1]//2)
-        self.hr = args['img_size']
         self.n_residual_blocks = args['n_resblocks']
         self.upsample_factor = args['scale']
 
@@ -90,7 +88,7 @@ def get_feat_extractor():
 class Discriminator(nn.Module):
     def __init__(self, pretrained=False):
         super(Discriminator, self).__init__()
-        self.resnet = torchvision.models.resnet34(pretrained=pretrained)
+        self.resnet = torchvision.models.resnet18(pretrained=pretrained)
         num_ftrs = self.resnet.fc.in_features
         self.resnet.fc = nn.Linear(num_ftrs, 1)
     def forward(self, x):

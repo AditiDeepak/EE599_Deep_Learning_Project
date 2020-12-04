@@ -6,7 +6,7 @@ from torch.utils.tensorboard import SummaryWriter
 from model import Generator, Discriminator, get_feat_extractor
 
 import os
-from utils import Config
+from utils import Config, PSNR, SSIM
 import matplotlib.pyplot as plt
 
 def visualize(gen_inputs, real_inputs, fake_inputs):
@@ -121,6 +121,8 @@ def train():
 
         for i, data in enumerate(data_loader):
             high_res_real, _ = data
+            psnrs = []
+            ssims = []
 
             for j in range(Config['batch_size']):
                 low_res[j] = scale(high_res_real[j])
@@ -157,12 +159,20 @@ def train():
             generator_total_loss.backward()
             opt_generator.step()
 
+            for j in range(Config['batch_size']):
+                psnrs.append(PSNR(high_res_real[j], high_res_fake[j]))
+                ssims.append(SSIM(high_res_real[j], high_res_fake[j]))
+
             print(f'Epoch {epoch} Iter {i/len(data_loader)}: Discriminator Loss {discriminator_loss.data[0]}, Generator Loss: {generator_content_loss.data[0]}/{generator_adversarial_loss.data[0]}/{generator_total_loss.data[0]}')
             writer.add_image('Training Super Resolution',visualize(low_res, high_res_real.cpu().data, high_res_fake.cpu().data), global_step = epoch)
+        psnr = np.array(psnrs).mean()
+        ssim = np.array(ssims).mean()
         writer.add_scalar('discriminator_loss', mean_discriminator_loss/len(data_loader), global_step=epoch)
         writer.add_scalar('generator_content_loss', mean_generator_content_loss/len(data_loader), global_step=epoch)
         writer.add_scalar('generator_adversarial_loss', mean_generator_adversarial_loss/len(data_loader), global_step=epoch)
         writer.add_scalar('generator_total_loss', mean_generator_total_loss/len(data_loader), global_step=epoch)
+        writer.add_scalar('PSNR', psnr, global_step=epoch)
+        writer.add_scalar('SSIM', ssim, global_step=epoch)
     torch.save(generator.state_dict(), os.path.join(Config['checkpoint_path'], 'generators/generator_final.pth'))
     torch.save(discriminator.state_dict(), os.path.join(Config['checkpoint_path'], 'discriminators/discriminator_final.pth'))
 
