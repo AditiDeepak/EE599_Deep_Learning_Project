@@ -1,8 +1,10 @@
 from torchvision import transforms
 import torch
-from PIL import Image
+import torch.nn as nn
 
-class SRDataset(nn.Dataset):
+from PIL import Image
+import os
+class SRDataset(torch.utils.data.Dataset):
     def __init__(self, dataset_path, hr_size, scale_factor=2):
         self.hr_size = hr_size
         self.dataset_path = dataset_path
