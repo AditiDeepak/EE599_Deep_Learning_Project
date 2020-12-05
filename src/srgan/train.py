@@ -85,7 +85,7 @@ def train():
 
     low_res = torch.FloatTensor(Config['batch_size'], 3, Config['img_size'][0], Config['img_size'][1])
 
-    for epoch in range(2):
+    for epoch in range(int(Config['batch_size']*0.3)):
 
         mean_generator_content_loss = 0.0
 
