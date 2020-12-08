@@ -12,7 +12,7 @@ from utils import Config
 class BGRSRDataset(torch.utils.data.Dataset):
     def __init__(self, frames_path, backgrounds_path):
         self.frames = [os.path.join(frames_path, file) for file in os.listdir(frames_path) if file.endswith('.png') or file.endswith('.jpg')]
-        self.backgrounds = [os.path.join(backgrounds_path, file) for file in os.listdir(backgrounds_path) if file.endswith('.png') or file.endswith('.jpg')]
+        self.backgrounds = [os.path.join(backgrounds_path, file) for file in os.listdir(backgrounds_path) if file.endswith('.png') or file.endswith('.jpg') or file.endswith('jpeg')]
 
         self.img_size = Config['img_size']
         self.scale_factor = Config['scale']
@@ -64,4 +64,4 @@ class BGRSRDataset(torch.utils.data.Dataset):
         # save_image(orig_img, 'orig_img.png')
         # save_image(new_bg, 'new_bg.png')
         # save_image(new_img, 'new_img.png')
-        return self.scale(orig_img), self.scale(new_bg), self.scale(new_img), self.normalize(new_img) 
+        return self.scale(orig_img), self.scale(new_bg), self.scale(new_img), self.normalize(new_img)

@@ -2,15 +2,15 @@ Config={}
 
 Config['debug']=True
 Config['use_cuda']=True
-Config['train_set_path']='/home/ubuntu/DIV2K/'
+Config['train_set_path']='/home/ubuntu/bgrsr_data/'
 # Config['test_set_path']='/home/adityan/EE599_Deep_Learning_Project/src/data/images'
-Config['checkpoint_path']='/home/ubuntu/srgan_new/'
+Config['checkpoint_path']='/home/ubuntu/bgrsrgan/'
 
 Config['scale']=2
 Config['n_colors']=3
-Config['n_resblocks']=6
+Config['n_resblocks']=3
 Config['n_feats']=64
-Config['epochs']=100
+Config['epochs']=200
 
 Config['batch_size']=8
 Config['num_workers']=4

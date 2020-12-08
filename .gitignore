@@ -1,5 +1,7 @@
 *.mp4
 *.png
 *.jpg
+*.pth
+*.avi
 datasets/*
 datasets
