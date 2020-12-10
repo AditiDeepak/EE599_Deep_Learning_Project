@@ -232,6 +232,8 @@ dataset = Background_Removal_Dataset(input_path,trimap_path,target_path)
 train_loader = torch.utils.data.DataLoader(dataset, batch_size=Config['batch_size'], shuffle = True)
 print("Dataloader Ready..!")
 
+
+#Model Layers code from - https://github.com/eti-p-doray/unet-gan-matting
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels, mid_channels=None):
         super().__init__()
