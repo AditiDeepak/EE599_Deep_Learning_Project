@@ -1,6 +1,6 @@
 import cv2 as cv
 import numpy as np
-
+# Code used for testing purposesm didn't help much
 def color_filter(img, r, g, b):
     colors = [b, g, r]
     result = np.zeros(img.shape, dtype=np.uint8)
@@ -42,7 +42,7 @@ def test_colors(img):
             cv.imshow("test_colors", img)
             continue
         elif k == 'x':
-            cv.destroyAllWindows()   
+            cv.destroyAllWindows()
             print("The RGB is ", (r, g, b))
             break
         else:
