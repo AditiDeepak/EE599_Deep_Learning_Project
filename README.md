@@ -16,6 +16,7 @@ trainer.py - training routine for edsrgan/fastsrgan models from model_edsr.py
 
 utils.py - Config and metric classes
 
+SRGAN takes as input normalized image (1,3,240,320) image and gives as output (1,3,480,640)
 
 Files for data:
 generate_db.py - performs video to frame conversion, youtube video downloads
@@ -38,4 +39,6 @@ run_inference.py - Performs inference on green screen video input for testing pu
 
 train.py - Final training routine for the BGRSRGAN architecture
 
-utils.py - Config dictionary and PSNR metrics, SSIM was changed to skimage toolkit 
+utils.py - Config dictionary and PSNR metrics, SSIM was changed to skimage toolkit
+
+BGRSRGAN takes as input normalized image with original background, target background concatenated channelwise (1,6,240,320) and returns two output images i) background replaced low resolution image (1,3,240,320) and ii) background replaced super resolution image (1,3,480,640)
