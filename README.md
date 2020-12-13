@@ -1,5 +1,5 @@
-# EE599_Deep_Learning_Project
-GANs in Video Conferencing
+# EE599_Deep_Learning_Project-GANs in Video Conferencing 
+
 
 Files for SRGAN:
 data.py - Initial dataloader design for SRGAN returns (lr_image, hr_image)
